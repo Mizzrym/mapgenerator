@@ -117,9 +117,9 @@ class MapGenerator {
         if ($this->map[$x][$y] <= Tiles::SAND)
             return;
 
-        if (($this->map[$x +1][$y  ] ?? 0 ) === Tiles::WATER)
+        if (($this->map[$x +1][$y   ] ?? 0) === Tiles::WATER)
              $this->map[$x +1][$y   ] = Tiles::SAND;
-        if (($this->map[$x -1][$y  ] ?? 0 ) === Tiles::WATER)
+        if (($this->map[$x -1][$y   ] ?? 0) === Tiles::WATER)
              $this->map[$x -1][$y   ] = Tiles::SAND;
         if (($this->map[$x   ][$y +1] ?? 0) === Tiles::WATER)
              $this->map[$x   ][$y +1] = Tiles::SAND;
