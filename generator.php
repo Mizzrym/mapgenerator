@@ -167,4 +167,3 @@ class ImageGenerator {
     }
 }
 
-(new ImageGenerator((new MapGenerator())))->display();
