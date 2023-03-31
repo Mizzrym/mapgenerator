@@ -97,6 +97,7 @@ class MapGenerator {
         $fallDown = mt_rand(1, 100);
         if ($fallDown > $this->fallDownRate)
             return $tile;
+
         return $this->nextTile($tile <= Tiles::WATER ? $tile : $tile -1);
     }
 
@@ -111,7 +112,6 @@ class MapGenerator {
     }
 
     private function growSand(int $x, int $y): void {
-
         if ($this->map[$x][$y] <= Tiles::SAND)
             return;
 
