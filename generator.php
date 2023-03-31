@@ -91,7 +91,6 @@ class MapGenerator {
         $this->grow($pos, $newTile, self::DE, $c);
         $this->grow($pos, $newTile, self::DS, $c);
         $this->grow($pos, $newTile, self::DW, $c);
-
     }
 
     private function nextTile(int $tile): int {
