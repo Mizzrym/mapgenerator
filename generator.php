@@ -10,14 +10,16 @@ class Tiles {
 
 class MapGenerator {
 
+    private const MAX_SEED = 2147483647;
+
     private const DN = 1; // direction north
     private const DE = 2; // direction east
     private const DS = 3; // direction south
     private const DW = 4; // direction west
 
-    public int $width = 50;
-    public int $height = 50;
-    public int $loops = 8;
+    public int $width = 100;
+    public int $height = 100;
+    public int $loops = 16;
     public int $maxGrowth = 15;
     public int $fallDownRate = 20;
 
@@ -30,9 +32,9 @@ class MapGenerator {
 
     public function generate(int $seed = null): void {
         mt_srand(
-            (is_int($seed) && $seed >= 0 && $seed <= 2147483647)
+            (is_int($seed) && $seed >= 0 && $seed <= static::MAX_SEED)
             ? $seed
-            : hexdec(substr(md5(uniqid('', true)), 0, 8))
+            : rand(0, static::MAX_SEED)
         );
         for ($i = $this->loops; $i > 0; $i--)
             $this->generateIsland();
