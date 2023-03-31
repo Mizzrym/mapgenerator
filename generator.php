@@ -79,8 +79,7 @@ class MapGenerator {
         if (($this->map[$pos['x']][$pos['y']] ?? 0) !== Tiles::WATER)
             return;
 
-        if ($pos['x'] < 1 || $pos['x'] > $this->width -1 ||
-          $pos['y'] < 1 || $pos['y'] > $this->height -1)
+        if ($pos['x'] < 1 || $pos['x'] > $this->width -1 || $pos['y'] < 1 || $pos['y'] > $this->height -1)
             return;
 
         $this->map[$pos['x']][$pos['y']] = $newTile = $this->nextTile($tile);
