@@ -32,9 +32,9 @@ class MapGenerator {
 
     public function generate(int $seed = null): void {
         mt_srand(
-            (is_int($seed) && $seed >= 0 && $seed <= static::MAX_SEED)
+            (is_int($seed) && $seed >= 0 && $seed <= self::MAX_SEED)
             ? $seed
-            : rand(0, static::MAX_SEED)
+            : rand(0, self::MAX_SEED)
         );
         for ($i = $this->loops; $i > 0; $i--)
             $this->generateIsland();
