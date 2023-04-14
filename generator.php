@@ -45,7 +45,13 @@ class MapGenerator {
                 if ($this->map[$x][$y] === Tiles::SAND)
                     $this->map[$x][$y] = Tiles::GRASS;
 
-        // beautification #2 grow sand on the islands
+        // beautification #2 replace single tiles with water
+        for ($x = 0; $x < $this->width; $x++)
+            for ($y = 0; $y < $this->height; $y++)
+                if ($this->isSingle($x, $y))
+                    $this->map[$x][$y] = Tiles::WATER;
+
+        // beautification #3 grow sand on the islands
         for ($x = 0; $x < $this->width; $x++)
             for ($y = 0; $y < $this->height; $y++)
                 $this->growSand($x, $y);
@@ -95,6 +101,16 @@ class MapGenerator {
             return $tile;
 
         return $this->nextTile($tile <= Tiles::WATER ? $tile : $tile -1);
+    }
+
+    private function isSingle(int $x, int $y): bool {
+        $w = Tiles::WATER;
+        return (
+            ($this->map[$x +1][$y   ] ?? $w) === $w && ($this->map[$x -1][$y   ] ?? $w) === $w &&
+            ($this->map[$x   ][$y +1] ?? $w) === $w && ($this->map[$x   ][$y -1] ?? $w) === $w &&
+            ($this->map[$x +1][$y +1] ?? $w) === $w && ($this->map[$x +1][$y -1] ?? $w) === $w &&
+            ($this->map[$x -1][$y +1] ?? $w) === $w && ($this->map[$x -1][$y -1] ?? $w) === $w
+        );
     }
 
     private function growSand(int $x, int $y): void {
